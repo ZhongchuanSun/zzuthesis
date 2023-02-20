@@ -3,17 +3,18 @@
 %% Encoding: UTF-8
 %% Author: Yuan Xiaoshuai - yxshuai@gmail.com
 %% Created: 2012-01-08 13:11
-%% Last modified: 2020-04-05 20:27
+%% Modified by: Sun Zhongchuan - zhongchuansun@foxmail.com
+%% Last modified: 2023-02-20
 %%================================================
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 标识节(Identification)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{zzuthesis}
-[2020/01/03 5.0.1 Zhengzhou University Thesis Template]
+[2023/02/20 5.0.2 Zhengzhou University Thesis Template]
 \hyphenation{Zzu-Thesis}
 \def\zzuthesis{ZzuThesis}
-\def\version{5.0.1}
+\def\version{5.0.2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 声明选项(Declaration options)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -83,6 +84,18 @@
     plainpages=false,
     hidelinks}
   \urlstyle{same}%相同字体
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 孙中川-zhongchuansun@foxmail.com 修改
+% 使用\titleheiti命令 将标题的字体改为黑体.
+\def\titleheiti{\heiti}
+% 设置英文字体 为 Times New Roman
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman}
+\setmonofont{Times New Roman}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 文前，正文，文后格式
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -102,11 +115,12 @@
   \ifzzu@doctor\cleardoublepage\else\clearpage\fi
   \ctexset{chapter/format+=\centering}
   \@mainmattertrue}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 中文配置
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \ctexset{%
-  contentsname={目\hspace{\ccwd} 录},
+  contentsname={目\hspace{\ccwd}录},
   listfigurename={插图清单},
   listtablename={表格清单},
   figurename={图},
@@ -327,18 +341,18 @@
 \newtheoremstyle{theorem}%定理类型
   {0.5ex}%Space above
   {0.5ex}%Space below
-  {\rmfamily}%Body font
+  {\kaishu}%Body font
   {}%Indent amount 
-  {\sffamily}%Theorem head font
+  {\titleheiti}%Theorem head font
   {\zzu@theorem@separator}%Punctuation after theorem head
-  {1em}%Space after theorem head
+  {0.5ex}%Space after theorem head
   {}%Theorem head spec
 \renewenvironment{proof}[1][\proofname]{\par%证明
   \pushQED{\qed}%
   \normalfont \topsep6\p@\@plus6\p@\relax
   \trivlist
   \item[\hskip\labelsep
-  \sffamily
+  \titleheiti
   #1\@addpunct{\quad}]\ignorespaces}
   {\popQED\endtrivlist\@endpefalse}
 \theoremstyle{theorem}
@@ -346,17 +360,17 @@
 \newtheorem{theorem}{\zzu@theorem@name}[chapter]
 \newtheorem{lemma}[theorem]{\zzu@lemma@name}
 \newtheorem{corollary}[theorem]{\zzu@corollary@name}
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 章节标题
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \ctexset{%
   chapter={%一级标题：黑体16磅，段前24磅，段后18磅
     afterindent=true,
     pagestyle={zzu@headings},
-    beforeskip={\ifzzu@bachelor 15bp\else 9bp\fi},
+    beforeskip={\ifzzu@bachelor 15bp\else 24bp\fi},
     aftername=\hskip\ccwd,
-    afterskip={\ifzzu@bachelor 20bp\else 24bp\fi},
-    format={\sffamily\sanhao[1]},
+    afterskip={\ifzzu@bachelor 20bp\else 18bp\fi},
+    format={\titleheiti\sanhao[1]},
     name=\relax,
     nameformat=\relax,
     titleformat=\relax,
@@ -367,7 +381,7 @@
     afterindent=true,
     beforeskip={\ifzzu@bachelor 25bp\else 24bp\fi\@plus .5ex \@minus .2ex},
     afterskip={\ifzzu@bachelor 12bp\else 6bp\fi \@plus .2ex},
-    format={\sffamily\ifzzu@bachelor\sihao[1.286]\else\sihao[1.429]\fi},
+    format={\titleheiti\ifzzu@bachelor\sihao[1.286]\else\sihao[1.429]\fi},
   },
   subsection={%三级标题：段前12磅，段后6磅
     afterindent=true,
@@ -375,7 +389,7 @@
             \else 0pt\fi},%硕博
     beforeskip={12bp \@plus .5ex \@minus .2ex},
     afterskip={6bp \@plus .2ex},
-    format={\sffamily\ifzzu@bachelor\xiaosi[1.25]%本科
+    format={\titleheiti\ifzzu@bachelor\xiaosi[1.25]%本科
             \else\banxiaosi[1.538]\fi},%硕博黑体13磅
   },
   subsubsection={%四级标题：段前12磅，段后6磅
@@ -385,7 +399,7 @@
     beforeskip={12bp \@plus .5ex \@minus .2ex},
     afterskip={6bp \@plus .2ex},
     format={\ifzzu@bachelor\xiaosi[1.25]%本科
-            \else\sffamily\xiaosi[1.667]\fi},%硕博
+            \else\titleheiti\xiaosi[1.667]\fi},%硕博
   },
   paragraph/afterindent=true,
   subparagraph/afterindent=true}
@@ -503,7 +517,7 @@
       \vspace*{2.4cm}
       {\includegraphics{zzubachelor}}
       \par\vskip2.4cm
-      \hspace*{1cm}\sffamily\sanhao\zzu@bachelor@title@pre\zzu@title@sep
+      \hspace*{1cm}\titleheiti\sanhao\zzu@bachelor@title@pre\zzu@title@sep
       \parbox[t]{10cm}{%
         \setbox0=\hbox{{\sanhao[1.55]\zzu@ctitle}}
         \begin{picture}(0,0)(0,0)
@@ -549,9 +563,9 @@
           {\xiaosan\rmfamily\zzu@submitdate}
         \end{center}
     \else%研究生学位论文
-      \noindent\begin{minipage}{.49\textwidth}
+      \noindent\begin{minipage}{.48\textwidth}
         \begin{flushleft}
-          \includegraphics[width=3.35cm]{zzulogo}
+          \includegraphics[width=3.0cm]{zzulogo}
         \end{flushleft}
       \end{minipage}
       \hfill
@@ -573,7 +587,7 @@
       \begin{center}
         {\includegraphics{zzu}}
         \par\vskip.6cm
-        {\ziju{0.5}\xiaochu\sffamily\zzu@subtitle}
+        {\ziju{0.5}\xiaochu\titleheiti\zzu@subtitle}
         \vskip \stretch{1}
         \kaishu\erhao[1.5] \zzu@ctitle
         \vskip \stretch{1}
@@ -665,7 +679,7 @@
   \thispagestyle{zzu@empty}
   \vspace*{\stretch{1}}
   \begin{center}
-    \sffamily\sanhao \zzu@declarename
+    \titleheiti\sanhao \zzu@declarename
   \end{center}
   \vskip 20pt
   \xiaosi[2]\zzu@declaretext
@@ -673,7 +687,7 @@
   \zzu@authorsig\hfill\zzu@declaredate\hspace*{2\ccwd}
   \vspace*{\stretch{2}}
   \begin{center}
-    \sffamily\sanhao \zzu@authtitle
+    \titleheiti\sanhao \zzu@authtitle
   \end{center}
   \vskip 20pt
   \xiaosi[2]\zzu@authorization
@@ -686,7 +700,8 @@
     pdfauthor={\zzu@cauthor},
     pdfsubject={\zzu@schoolname\zzu@subtitle},
     pdfkeywords={\zzu@ckeywords},
-    pdfcreator={\zzuthesis-v\version}}}
+    % pdfcreator={\zzuthesis-v\version}
+    }}
 \newcommand{\makecover}{%制作封面
   \zzu@setup@pdfinfo
   \phantomsection
@@ -842,7 +857,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newenvironment{resume}[1][\zzu@resume@title]{%
   \zzu@chapter*{#1}\wuhao[1.524]}{}
-\newcommand{\resumeitem}[1]{\vspace{2em}{\sihao\sffamily{#1}}\vspace{.5em}\par}
+\newcommand{\resumeitem}[1]{\vspace{2em}{\sihao\titleheiti{#1}}\vspace{.5em}\par}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 延迟的代码 (Delaying code)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
