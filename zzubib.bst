@@ -151,24 +151,30 @@ FUNCTION {bbl.slash} { "//\allowbreak " }
 
 FUNCTION {bbl.sine.loco}
 { entry.lang lang.zh =
-    { "[出版地不详]" }
-    { "[S.l.]" }
+    { "" }
+    { "" }
   if$
 }
+% [出版地不详]
+% [S.l.]
 
 FUNCTION {bbl.sine.nomine}
 { entry.lang lang.zh =
-    { "[出版者不详]" }
-    { "[s.n.]" }
+    { "" }
+    { "" }
   if$
 }
+% [出版者不详]
+% [s.n.]
 
 FUNCTION {bbl.sine.loco.sine.nomine}
 { entry.lang lang.zh =
-    { "[出版地不详: 出版者不详]" }
-    { "[S.l.: s.n.]" }
+    { "" }
+    { "" }
   if$
 }
+% [出版地不详: 出版者不详]
+% [S.l.: s.n.]
 
 FUNCTION {not}
 {   { #0 }
