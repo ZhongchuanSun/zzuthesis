@@ -4,17 +4,17 @@
 %% Author: Yuan Xiaoshuai - yxshuai@gmail.com
 %% Created: 2012-01-08 13:11
 %% Modified by: Sun Zhongchuan - zhongchuansun@foxmail.com
-%% Last modified: 2023-02-20
+%% Last modified: 2023-05-16
 %%================================================
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 标识节(Identification)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{zzuthesis}
-[2023/02/20 5.0.2 Zhengzhou University Thesis Template]
+[Zhengzhou University Thesis Template]
 \hyphenation{Zzu-Thesis}
 \def\zzuthesis{ZzuThesis}
-\def\version{5.0.2}
+\def\version{5.0.1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 声明选项(Declaration options)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -56,16 +56,17 @@
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
 \RequirePackage{calc}%算术运算
-\RequirePackage[shortlabels]{enumitem}
+\RequirePackage[shortlabels,inline]{enumitem}
 \RequirePackage{titletoc}%目录格式
 \RequirePackage{amsmath,amsthm}
-\RequirePackage{unicode-math}
-\unimathsetup{
-  math-style = ISO,
-  bold-style = ISO,
-  nabla      = upright,
-  partial    = upright,
-}
+\RequirePackage{amssymb}
+% \RequirePackage{unicode-math}
+% \unimathsetup{
+%   math-style = ISO,
+%   bold-style = ISO,
+%   nabla      = upright,
+%   partial    = upright,
+% }
 \RequirePackage{geometry}%页边距设置
 \RequirePackage{tabularx}%表格宽度控制
 \RequirePackage{multirow}%跨行表格
@@ -86,10 +87,11 @@
   \urlstyle{same}%相同字体
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 孙中川-zhongchuansun@foxmail.com 修改
-% 使用\titleheiti命令 将标题的字体改为黑体.
+%% 孙中川 修改
+% 将 使用\titleheiti命令 改变标题的字体.
 \def\titleheiti{\heiti}
-% 设置英文字体 为 Times New Roman
+% MUST TODO 检查中文字体是否符合学校要求
+% 设置英文字体
 \setmainfont{Times New Roman}
 \setsansfont{Times New Roman}
 \setmonofont{Times New Roman}
@@ -121,8 +123,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \ctexset{%
   contentsname={目\hspace{\ccwd}录},
-  listfigurename={插图清单},
-  listtablename={表格清单},
+  listfigurename={图目录}, % 插图清单
+  listtablename={表目录}, % 表格清单
   figurename={图},
   tablename={表},
   appendixname={附录},
@@ -158,9 +160,9 @@
   \def\zzu@supervisor@title{导师姓名}
   \def\zzu@subject@title{学科门类}
   \def\zzu@major@title{专业名称}
-  \ifzzu@master
+  % \ifzzu@master
     \def\zzu@department@title{培养院系}
-  \else\fi
+  % \else\fi
 \fi
 \def\zzu@cdate@title{完成时间}
 \let\CJK@todaysave=\today
@@ -245,7 +247,9 @@
   ignoreall,
   nomarginpar,
   left=32mm,
-  top=38mm}
+  top=41mm,
+  bottom=40mm,
+  headsep=4mm}
 \ctexset{%
   punct=quanjiao,
   space=auto,
@@ -367,7 +371,7 @@
   chapter={%一级标题：黑体16磅，段前24磅，段后18磅
     afterindent=true,
     pagestyle={zzu@headings},
-    beforeskip={\ifzzu@bachelor 15bp\else 24bp\fi},
+    beforeskip={\ifzzu@bachelor 15bp\else 8bp\fi},  % 将24bp 改为了8pb
     aftername=\hskip\ccwd,
     afterskip={\ifzzu@bachelor 20bp\else 18bp\fi},
     format={\titleheiti\sanhao[1]},
@@ -508,6 +512,8 @@
        \or December\fi\unskip,\ \ \the\year}
 \newcommand\zzu@underline[2][6em]{%
   \hskip\p@\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3\p@}
+\newcommand\author@underline[2][6em]{%
+  \hskip\p@{\hb@xt@ #1{\hspace{1em}#2\hss}}\hskip3\p@}
 \newlength{\zzu@title@width}
 \def\zzu@put@title#1{\makebox{\hb@xt@\zzu@title@width{#1}}}
 \newcommand{\zzu@first@titlepage}{%论文中文封面
@@ -597,24 +603,24 @@
         \def\arraystretch{1.5}%\arraystretch表格行距的缩放比例因子（缺省为1）
         \begin{tabular}{p{\zzu@title@width}l@{}l}
           \zzu@put@title{\zzu@author@title} &  \zzu@title@sep & 
-            \zzu@underline[150pt]{\zzu@cauthor}
+            \author@underline[150pt]{\zzu@cauthor}
         \\
           \zzu@put@title{\zzu@supervisor@title} &  \zzu@title@sep & 
-            \zzu@underline[150pt]{\zzu@csupervisor\hspace{\ccwd}\zzu@protitle}
+            \author@underline[150pt]{\zzu@csupervisor\hspace{\ccwd}\zzu@protitle}
         \\ 
           \zzu@put@title{\zzu@subject@title} &  \zzu@title@sep & 
-            \zzu@underline[150pt]{\zzu@csubject}
+            \author@underline[150pt]{\zzu@csubject}
         \\
           \zzu@put@title{\zzu@major@title} &  \zzu@title@sep & 
-            \zzu@underline[150pt]{\zzu@cmajor}
+            \author@underline[150pt]{\zzu@cmajor}
         \\
-        \ifzzu@doctor\else
+        % \ifzzu@doctor\else
           \zzu@put@title{\zzu@department@title} &  \zzu@title@sep & 
-            \zzu@underline[150pt]{\zzu@cdepartment}
+            \author@underline[150pt]{\zzu@cdepartment}
         \\
-        \fi
+        % \fi
           \zzu@put@title{\zzu@cdate@title} &  \zzu@title@sep & 
-            \zzu@underline[150pt]{\zzu@cdate}
+            \author@underline[150pt]{\zzu@cdate}
         \end{tabular}\\
         \vskip \stretch{1}
       \end{center}
@@ -660,20 +666,21 @@
   \end{center}}
 \newcommand{\zzu@declarename}{学位论文原创性声明}
 \newcommand{\zzu@authtitle}{学位论文使用授权声明}
-\newcommand{\zzu@authorsig}{学位论文作者：}
+\newcommand{\zzu@authorsig}{学位论文作者签名：}
+\newcommand{\zzu@supervisorsig}{导师签名：}
 \newcommand{\zzu@declaretext}{\hspace{2\ccwd}
-本人郑重声明：所呈交的学位论文，是本人在导师的指导下，独立进行研究所取得的成果
-。除文中已经注明引用的内容外，本论文不包含任何其他个人或集体已经发表或撰写过的
-科研成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。本声
-明的法律责任由本人承担。}
+本人郑重声明：所呈交的学位论文，是本人在导师的指导下，独立进行研究所取得
+的成果。除文中已经注明引用的内容外，本论文不包含任何其他个人或集体已经发表或
+撰写过的科研成果。对本文的研究作出重要贡献的个人和集体，均已在文中以明确方式
+标明。本声明的法律责任由本人承担。
+}
 \newcommand{\zzu@declaredate}{日\hspace{\ccwd} 期：\hspace{4\ccwd} 年\hspace{2\ccwd} 月\hspace{2\ccwd} 日}
 \newcommand{\zzu@authorization}{\hspace{2\ccwd}
-本人在导师指导下完成的论文及相关的职务作品，知识产权归属郑州大学。根据郑州大学
-有关保留、使用学位论文的规定，同意学校保留或向国家有关部门或机构送交论文的复印
-件和电子版，允许论文被查阅和借阅；本人授权郑州大学可以将本学位论文的全部或部分
-编入有关数据库进行检索，可以采用影印、缩印或其他复制手段保存论文和汇编本学位论
-文。本人离校后发表、使用学位论文或与该学位论文直接相关的学术论文或成果时，第一
-署名单位仍然为郑州大学。保密论文在解密后应遵守此规定。}
+本人完全了解郑州大学有关保留、使用学位论文的规定，同意学校保留或向国家有
+关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅；本人授权郑州大学
+可以将本学位论文的全部或部分编入有关数据库进行检索，可以采用影印、缩印或者其
+他复制手段保存论文和汇编本学位论文。保密论文在解密后应遵守此规定。
+}
 \newcommand{\zzu@authdate}{日\hspace{\ccwd} 期：\hspace{4\ccwd} 年\hspace{2\ccwd} 月\hspace{2\ccwd} 日}
 \newcommand{\zzu@authorization@mk}{%原创性声明及授权声明
   \thispagestyle{zzu@empty}
@@ -684,7 +691,9 @@
   \vskip 20pt
   \xiaosi[2]\zzu@declaretext
   \vskip 20pt
-  \zzu@authorsig\hfill\zzu@declaredate\hspace*{2\ccwd}
+  \zzu@authorsig\hfill\zzu@supervisorsig\hspace*{9\ccwd}
+  \vskip 10pt
+  \hfill\zzu@declaredate
   \vspace*{\stretch{2}}
   \begin{center}
     \titleheiti\sanhao \zzu@authtitle
@@ -692,7 +701,9 @@
   \vskip 20pt
   \xiaosi[2]\zzu@authorization
   \vskip 20pt
-  \zzu@authorsig\hfill\zzu@authdate\hspace*{2\ccwd}
+  \zzu@authorsig\hfill\zzu@supervisorsig\hspace*{9\ccwd}
+  \vskip 10pt
+  \hfill\zzu@authdate
   \vspace*{\stretch{2}}}
 \def\zzu@setup@pdfinfo{%pdf文档信息
   \hypersetup{%

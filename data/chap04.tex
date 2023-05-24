@@ -384,21 +384,22 @@ Value & Name & Alternate names, and names for sets of the given size\\
 
 \begin{equation}
 \label{eq:1}
-\ddot{\symbf{\rho}}-\frac{\mu}{R_t^3}\left(3\symbf{R_t}\frac{\symbf{R_t\rho}}{R_t^2}-\symbf{\rho}\right)=\symbf{a}
+a
+% \ddot{\symbf{\rho}}-\frac{\mu}{R_t^3}\left(3\symbf{R_t}\frac{\symbf{R_t\rho}}{R_t^2}-\symbf{\rho}\right)=\symbf{a}
 \end{equation}
-\begin{flushleft}
-\renewcommand\arraystretch{1.25}
-\begin{tabularx}{\textwidth}{@{}>{\normalsize\rm}l@{\quad}>{\normalsize\rm}l@{——}>{\normalsize\rm}X@{}}
-式中& $\symbf{\rho}$ &追踪飞行器与目标飞行器之间的相对位置矢量；\\
-&  $\ddot{\symbf{\rho}}$&追踪飞行器与目标飞行器之间的相对加速度；\\
-&  $\symbf{a}$   &推力所产生的加速度；\\
-&  $\symbf{R_t}$ & 目标飞行器在惯性坐标系中的位置矢量；\\
-&  $\omega_{t}$ & 目标飞行器的轨道角速度；\\
-&  $\symbf{g}$ & 重力加速度，$=\frac{\mu}{R_{t}^{3}}\left(
-3\symbf{R_{t}}\frac{\symbf{R_{t}\rho}}{R_{t}^{2}}-\symbf{\rho}\right)=\omega_{t}^{2}\frac{R_{t}}{p}\left(
-3\symbf{R_{t}}\frac{\symbf{R_{t}\rho}}{R_{t}^{2}}-\symbf{\rho}\right)$，这里~$p$~是目标飞行器的轨道半通径。
-\end{tabularx}\vspace{.5ex}%TODO : 注释内容自动转页接排
-\end{flushleft}
+% \begin{flushleft}
+% \renewcommand\arraystretch{1.25}
+% \begin{tabularx}{\textwidth}{@{}>{\normalsize\rm}l@{\quad}>{\normalsize\rm}l@{——}>{\normalsize\rm}X@{}}
+% 式中& $\symbf{\rho}$ &追踪飞行器与目标飞行器之间的相对位置矢量；\\
+% &  $\ddot{\symbf{\rho}}$&追踪飞行器与目标飞行器之间的相对加速度；\\
+% &  $\symbf{a}$   &推力所产生的加速度；\\
+% &  $\symbf{R_t}$ & 目标飞行器在惯性坐标系中的位置矢量；\\
+% &  $\omega_{t}$ & 目标飞行器的轨道角速度；\\
+% &  $\symbf{g}$ & 重力加速度，$=\frac{\mu}{R_{t}^{3}}\left(
+% 3\symbf{R_{t}}\frac{\symbf{R_{t}\rho}}{R_{t}^{2}}-\symbf{\rho}\right)=\omega_{t}^{2}\frac{R_{t}}{p}\left(
+% 3\symbf{R_{t}}\frac{\symbf{R_{t}\rho}}{R_{t}^{2}}-\symbf{\rho}\right)$，这里~$p$~是目标飞行器的轨道半通径。
+% \end{tabularx}\vspace{.5ex}%TODO : 注释内容自动转页接排
+% \end{flushleft}
 
 其中生成注释部分的代码及其说明如下：
 \begin{latex}
@@ -517,14 +518,14 @@ H_c&=\frac{1}{2n} \sum^n_{l=0}(-1)^{l}(n-{l})^{p-2}
 这样的公式组两侧不能再添加其它内容，比如大括号等。不过相应地用
 \texttt{gathered}、\texttt{aligned} 和 \texttt{alignedat} 环境则生成仅占据
 实际公式宽度的公式组。
-\begin{equation*}
-\left. \begin{aligned}
-  \symbf{B'}&=-\symbfit{\partial}\times \symbf{E},\\
-  \symbf{E'}&=\symbfit{\partial}\times \symbf{B} - 4\pi j,
-\end{aligned}
-\right\}
-\qquad \text{Maxwell's equations}
-\end{equation*}
+% \begin{equation*}
+% \left. \begin{aligned}
+%   \symbf{B'}&=-\symbfit{\partial}\times \symbf{E},\\
+%   \symbf{E'}&=\symbfit{\partial}\times \symbf{B} - 4\pi j,
+% \end{aligned}
+% \right\}
+% \qquad \text{Maxwell's equations}
+% \end{equation*}
 
 有多种条件的公式组用 \texttt{cases} 次环境。
 \[ P_{r-j}=\begin{cases}
