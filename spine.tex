@@ -1,29 +1,31 @@
-%%================================================
-%% Filename: spine.tex
-%% Encoding: UTF-8
-%% Author: Yuan Xiaoshuai - yxshuai@gmail.com
-%% Created: 2012-03-02 20:24
-%% Last modified: 2019-10-31 21:26
-%%================================================
 \documentclass{ctexart}
-\usepackage[papersize={8.66in,11.69in},
-  left=0cm, right=0cm,top=5cm,bottom=5cm]{geometry}
-\usepackage{graphicx}
+\usepackage[papersize={8.66in,11.69in},left=0cm,right=0cm,top=5cm,bottom=5cm]{geometry}
 
-\newcommand{\envert}[1]{\raisebox{-.4em}{#1}}
+% https://stackoverflow.com/a/2458125/13182099
+\def\hyphenateWholeString#1{\xHyphenate#1$\wholeString\unskip}
+\def\xHyphenate#1#2\wholeString {\if#1$
+\else\transform{#1}
+\takeTheRest#2\ofTheString\fi}
+\def\takeTheRest#1\ofTheString\fi
+{\fi \xHyphenate#1\wholeString}
+\def\transform#1{#1\par}
 
-\providecommand{\thesistitle}{郑州大学学位论文 \envert{\LaTeX} 模板使用示例}
-\providecommand{\thesisauthor}{赵钱孙}
-\providecommand{\thesisnumber}{\raisebox{-1.2em}{20080800901}}
+\newcommand{\thesistitle}[1]{\def\spinetitle{\hyphenateWholeString{#1}}}
+\newcommand{\thesisauthor}[1]{\def\spineauthor{\hyphenateWholeString{#1}}}
+\newcommand{\thesisadviser}[3]{\def\spineadviser{\hyphenateWholeString{#1}~\par\hyphenateWholeString{#2}~\par\hyphenateWholeString{#3}}}
+\newcommand{\thesisinstitute}[1]{\def\spineinst{\hyphenateWholeString{#1}}}
 
 \pagestyle{empty}
 \begin{document}
 
+% 上方写论文题目，中间写研究生姓名，下方写“郑州大学”，距上下边界均为5cm左右
 \flushright
-\rotatebox{-90}{\thesistitle}
-\vfill
-\vspace*{5em}\rotatebox{-90}{\thesisauthor}
-\vfill
-\rotatebox{-90}{\thesisnumber}
+\thesistitle{郑州大学学位论文 模板使用示例}
+\thesisauthor{赵钱孙}
+\thesisinstitute{郑州大学}
+
+\linespread{1.0}
+% \spinetitle\vfill\spineauthor\vfill\spineadviser\vfill\spineinst
+\spinetitle\vfill\spineauthor\vfill\spineinst
 
 \end{document}
